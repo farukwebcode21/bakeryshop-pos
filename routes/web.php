@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::post('/user-registration', [UserController::class, 'UserRegistration']);
-Route::post('/login', [UserController::class, 'UserLogin']);
+Route::post('/user-login', [UserController::class, 'UserLogin']);
+Route::post('/sent-otpcode', [UserController::class, 'SendOTPCode']);
