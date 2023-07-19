@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// ================ Web API Routes =============================
 
 Route::post('/user-registration', [UserController::class, 'UserRegistration']);
 Route::post('/user-login', [UserController::class, 'UserLogin']);
@@ -26,3 +28,16 @@ Route::post('/verify-otp', [UserController::class, 'VerifyOTP']);
 
 // Token Verify
 Route::post('/reset-password', [UserController::class, 'ResetPass'])->middleware([TokenVerificationMiddleware::class]);
+
+// =============Page Routes ==================================
+Route::controller(UserController::class)->group(function () {
+    Route::get('/userLogin', 'LoginPage')->name('page.login');
+    Route::get('/userRegistration', 'RegistrationPage')->name('page.registration');
+    Route::get('/sendOtp', 'SendOtpPage')->name('page.sendOtp');
+    Route::get('/verifyOtp', 'VerifyOTPPage')->name('page.verifyOtp');
+    Route::get('/resetPassword', 'ResetPasswordPage')->name('page.resetPassword');
+});
+
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/dashboard', 'DashboardPage')->name('page.dashboard');
+});

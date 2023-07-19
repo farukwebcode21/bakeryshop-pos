@@ -10,6 +10,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller {
+    function LoginPage() {
+        return view('pages.auth.login-page');
+    }
+    function RegistrationPage() {
+        return view('pages.auth.registration-page');
+    }
+    function SendOtpPage() {
+        return view('pages.auth.send-otp-page');
+    }
+    function VerifyOTPPage() {
+        return view('pages.auth.verify-otp-page');
+    }
+    function ResetPasswordPage() {
+        return view('pages.auth.reset-pass-page');
+    }
     function UserRegistration(Request $request) {
         try {
             User::create([
@@ -38,8 +53,8 @@ class UserController extends Controller {
             return response()->json([
                 'status'  => 'success',
                 'message' => 'User Login successfully',
-                'token'   => $token,
-            ], 200);
+                // 'token'   => $token,
+            ], 200)->cookie('token', $token, 60 * 24 * 30);
         } else {
             return response()->json([
                 'status'  => 'failed',
