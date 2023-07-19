@@ -27,7 +27,7 @@ class UserController extends Controller {
             return response()->json([
                 'status'  => 'faild',
                 'message' => 'User Registration Faild',
-            ], status: 501);
+            ], status: 401);
         }
 
     }
@@ -44,7 +44,7 @@ class UserController extends Controller {
             return response()->json([
                 'status'  => 'failed',
                 'message' => 'unauthorized',
-            ], 501);
+            ], 401);
         }
 
     }
@@ -65,7 +65,7 @@ class UserController extends Controller {
             return response()->json([
                 'status'  => 'failed',
                 'message' => 'unauthorized',
-            ], 501);
+            ], 401);
         }
     }
     function VerifyOTP(Request $request) {
@@ -89,7 +89,24 @@ class UserController extends Controller {
         } else {
             return response()->json([
                 'status'  => 'Failed',
-                'message' => 'Unauthorized',
+                'message' => 'unauthorized',
+            ], 401);
+        }
+    }
+
+    function ResetPass(Request $request) {
+        try {
+            $email = $request->header('email');
+            $password = $request->input('password');
+            User::where('email', '=', $email)->update(['password' => $password]);
+            return response()->json([
+                'status'  => 'success',
+                "message" => 'Request Successful',
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'status'  => 'faild',
+                'message' => 'Something Went Wrong',
             ], 501);
         }
     }
