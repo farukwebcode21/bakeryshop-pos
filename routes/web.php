@@ -26,6 +26,9 @@ Route::post('/user-login', [UserController::class, 'UserLogin']);
 Route::post('/sent-otpcode', [UserController::class, 'SendOTPCode']);
 Route::post('/verify-otp', [UserController::class, 'VerifyOTP']);
 
+// User Logout
+Route::get('/logout', [UserController::class, 'UserLogOut'])->name('page.logout');
+
 // Token Verify
 Route::post('/reset-password', [UserController::class, 'ResetPass'])->middleware([TokenVerificationMiddleware::class]);
 
@@ -35,9 +38,9 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/userRegistration', 'RegistrationPage')->name('page.registration');
     Route::get('/sendOtp', 'SendOtpPage')->name('page.sendOtp');
     Route::get('/verifyOtp', 'VerifyOTPPage')->name('page.verifyOtp');
-    Route::get('/resetPassword', 'ResetPasswordPage')->name('page.resetPassword');
+    Route::get('/resetPassword', 'ResetPasswordPage')->middleware([TokenVerificationMiddleware::class])->name('page.resetPassword');
 });
 
 Route::controller(DashboardController::class)->group(function () {
-    Route::get('/dashboard', 'DashboardPage')->name('page.dashboard');
+    Route::get('/dashboard', 'DashboardPage')->middleware([TokenVerificationMiddleware::class])->name('page.dashboard');
 });
