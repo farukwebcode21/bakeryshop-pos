@@ -42,7 +42,7 @@
                         <h6>User Name</h6>
                         <hr class="user-dropdown-divider  p-0"/>
                     </div>
-                    <a href="" class="side-bar-item">
+                    <a href="{{ route('page.profileUpdate') }}" class="side-bar-item">
                         <span class="side-bar-item-caption">Profile</span>
                     </a>
                     <a href="{{ route('page.logout') }}" class="side-bar-item">
@@ -63,7 +63,7 @@
     @yield('content')
 </div>
 
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.bundle.js')}}"></script>
 
 <script>
     function MenuBarClickHandler() {
