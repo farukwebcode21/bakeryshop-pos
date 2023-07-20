@@ -68,7 +68,9 @@
                 mobile:mobile,
                 password:password
             });
+            
             hideLoader();
+
             if(res.status === 200 && res.data['status']==='success'){
                 successToast(res.data['messagge']);
                 setTimeout(() => {
