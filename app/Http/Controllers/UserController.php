@@ -41,9 +41,9 @@ class UserController extends Controller {
                 'status'  => 'success',
                 'message' => 'User Registration Successfully',
             ], status: 200);
-        } catch (Exception $th) {
+        } catch (Exception $e) {
             return response()->json([
-                'status'  => 'faild',
+                'status'  => 'Failed',
                 'message' => 'User Registration Faild',
             ], status: 401);
         }
