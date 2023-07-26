@@ -10,6 +10,11 @@
     <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" />
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('css/toastify.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatables-select.min.css') }}">
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables-select.min.js') }}"></script>
     <script src="{{asset('js/toastify-js.js')}}"></script>
     <script src="{{asset('js/axios.min.js')}}"></script>
     <script src="{{asset('js/config.js')}}"></script>
@@ -56,22 +61,22 @@
 
 
 <div id="sideNavRef" class="side-nav-open">
-        <a href="#Getting-Started" class="side-bar-item">
+        <a href="{{ route('page.dashboard')}}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Dashboard</span>
     </a>
 
-    <a href="#Getting-Started" class="side-bar-item">
+    <a href="{{ route('customer-page') }}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Customer</span>
     </a>
 
-    <a href="#Getting-Started" class="side-bar-item">
+    <a href="{{ route('category-page') }}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Category</span>
     </a>
 
-    <a href="#Getting-Started" class="side-bar-item">
+    <a href="{{ route('product-page') }}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Product</span>
     </a>

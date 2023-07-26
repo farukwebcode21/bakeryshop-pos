@@ -7,6 +7,10 @@ use File;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller {
+
+    function ProductPage() {
+        return view('pages.dashboard.product-page');
+    }
     public function CreateProduct(Request $request) {
         $user_id = $request->header('id');
         // Prepare File Name & Path

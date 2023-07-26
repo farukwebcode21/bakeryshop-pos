@@ -46,6 +46,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/userProfile', 'ProfilePage')->middleware([TokenVerificationMiddleware::class])->name('page.profileUpdate');
 });
 
+Route::get('/customerPage', [CustomerController::class, 'CustomerPage'])->middleware([TokenVerificationMiddleware::class])->name('customer-page');
+Route::get('/categoryPage', [CategoryController::class, 'CategoryPage'])->middleware([TokenVerificationMiddleware::class])->name('category-page');
+Route::get('/productPage', [ProductController::class, 'ProductPage'])->middleware([TokenVerificationMiddleware::class])->name('product-page');
+
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/dashboard', 'DashboardPage')->middleware([TokenVerificationMiddleware::class])->name('page.dashboard');
 });
