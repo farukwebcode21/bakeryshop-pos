@@ -70,3 +70,9 @@ Route::post('/create-product', [ProductController::class, 'CreateProduct'])->mid
 Route::get('/list-product', [ProductController::class, 'ProductList'])->middleware([TokenVerificationMiddleware::class]);
 Route::delete('/delete-product', [ProductController::class, 'DeleteProduct'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/update-product', [ProductController::class, 'UpdateProduct'])->middleware([TokenVerificationMiddleware::class]);
+
+// Dashboard API
+
+Route::get('/total-customer', [DashboardController::class, 'TotalCustomer'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/total-category', [DashboardController::class, 'TotalCategory'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/total-product', [DashboardController::class, 'TotalProduct'])->middleware([TokenVerificationMiddleware::class]);
