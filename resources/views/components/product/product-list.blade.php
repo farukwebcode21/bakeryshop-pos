@@ -29,3 +29,53 @@
         </div>
     </div>
 </div>
+<script>
+        async function getList() {
+        showLoader();
+        let res =await axios.get("/list-product");
+        hideLoader();
+
+        let tableData =$('#tableData');
+        let tableList =$('#tableList');
+
+        tableData.DataTable().destroy();
+        tableList.empty();
+
+        res.data.forEach(function (item, index){
+        let row =`
+            <tr>
+                <td><img class="w-20" src="/${item['img_url']}" alt=""></td>
+                    <td>${item.name}</td>
+                    <td>${item.price}</td>
+                    <td>${item.unit}</td>
+                <td>
+                    <button data-id="${item.id}" class="btn edit btn-sm btn-outline-success">Edit</button>
+                    <button data-id="${item.id}" class="btn delete btn-sm btn-outline-danger">Delete</button>
+                </td>
+            </tr>
+            `
+            tableList.append(row);
+        });
+        $('.edit').on('click', function(){
+            let id =$(this).data('id');
+            alert(id);
+        });
+        $('.delete').on('click', function(){
+            let id =$(this).data('id');
+            alert(id);
+        });
+        tableData.DataTable({
+            order: [[0, 'desc']],
+            lengthMenu: [5,10,15,20,25,30,35,40,45,50],
+            language:{
+                paginate:{
+                    next: '&#8594;', // or '→'
+                    previous: '&#8592;' // or '←'
+                }
+            }
+        });
+
+    }
+    getList();
+
+</script>
